@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 
-import 'model_transaction.dart';
+import '../models/model_transaction.dart';
+import '../models/model_transactions.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,6 +13,7 @@ class WidgetTransactionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     final Transactions transactions = Provider.of<Transactions>(context);
     return Card(
       child: Container(
@@ -65,19 +67,37 @@ class WidgetTransactionItem extends StatelessWidget {
               ),
             ),
             // Delete Button
-            MaterialButton(
-              minWidth: 50,
-              height: 45,
-              padding: EdgeInsets.all(0),
-              child: Icon(
-                Icons.delete,
-                color: Theme.of(context).errorColor,
-              ),
-              shape: CircleBorder(),
-              onPressed: () {
-                transactions.deleteTransaction(index);
-              },
-            ),
+            mediaQuery.size.width > 600
+                ? MaterialButton(
+                    minWidth: 100,
+                    height: 45,
+                    color: Theme.of(context).errorColor,
+                    elevation: 1,
+                    padding: EdgeInsets.only(left: 5),
+                    child: Text(
+                      'REMOVE',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    onPressed: () {
+                      transactions.deleteTransaction(index);
+                    },
+                  )
+                : MaterialButton(
+                    minWidth: 45,
+                    height: 45,
+                    padding: EdgeInsets.all(0),
+                    color: Colors.white,
+                    child: Icon(
+                      Icons.delete,
+                      color: Theme.of(context).errorColor,
+                    ),
+                    shape: CircleBorder(),
+                    elevation: 1,
+                    onPressed: () {
+                      transactions.deleteTransaction(index);
+                    },
+                  ),
           ],
         ),
       ),

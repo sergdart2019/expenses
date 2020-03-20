@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'model_transaction.dart';
+
 class Transactions with ChangeNotifier {
   List<Transaction> transactions = [
     Transaction(
@@ -55,14 +57,4 @@ class Transactions with ChangeNotifier {
   }
 }
 
-class Transaction {
-  final String title;
-  final double amount;
-  final DateTime date;
 
-  Transaction({
-    this.title,
-    this.amount,
-    this.date,
-  });
-}

@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import 'model_transaction.dart';
+import '../models/model_transactions.dart';
 
 class WidgetNewTransaction extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -36,6 +36,7 @@ class _WidgetNewTransactionState extends State<WidgetNewTransaction> {
   Widget build(BuildContext context) {
     final Transactions transactions = Provider.of<Transactions>(context);
     return Container(
+      height: MediaQuery.of(context).size.height - 80,
       child: Card(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
